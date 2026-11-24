@@ -1,0 +1,105 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Signup Form</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background-color: lightblue;
+            text-align: center;
+            margin-top: 100px;
+        }
+
+        form {
+            background: white;
+            padding: 25px;
+            width: 300px;
+            margin: auto;
+            border-radius: 10px;
+        }
+
+        input {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            box-sizing: border-box;
+        }
+
+        button {
+            background: green;
+            color: white;
+            padding: 10px 25px;
+            border: none;
+            cursor: pointer;
+        }
+
+        #message {
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Signup Form</h2>
+
+    <form id="signupForm">
+
+        <input type="text" id="name"
+        placeholder="Enter Name"><br>
+
+        <input type="email" id="email"
+        placeholder="Enter Email"><br>
+
+        <input type="password" id="password"
+        placeholder="Enter Password"><br>
+
+        <button type="submit">Signup</button>
+
+    </form>
+
+    <p id="message"></p>
+
+    <script>
+
+        let form = document.getElementById("signupForm");
+
+        form.addEventListener("submit", function(event) {
+
+            event.preventDefault();
+
+            let name = document.getElementById("name").value.trim();
+            let email = document.getElementById("email").value.trim();
+            let password = document.getElementById("password").value.trim();
+
+            let message = document.getElementById("message");
+
+            if (name === "" || email === "" || password === "") {
+
+                message.innerHTML = "Please fill all fields!";
+                message.style.color = "red";
+
+            } else {
+
+                let user = {
+                    name: name,
+                    email: email,
+                    password: password
+                };
+
+                localStorage.setItem("user", JSON.stringify(user));
+
+                message.innerHTML = "Signup Successful!";
+                message.style.color = "green";
+
+                form.reset();
+            }
+
+        });
+
+    </script>
+
+</body>
+</html>
